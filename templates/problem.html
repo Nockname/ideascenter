@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block content %}
+<button id="scoreboard_button">Back to Scoreboard</button>
+<script>
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+        get: (searchParams, prop) => searchParams.get(prop),
+    });
+    let p_id = params.player;
+    let g_id = params.g_id;
+    if (p_id != null && g_id != null) {
+        document.getElementById("scoreboard_button").addEventListener("click", function() {
+            location.href = "scoreboard?id=" + g_id + "&player=" + p_id;
+        });
+    }
+    else {
+        document.getElementById("scoreboard_button").style.display = "none";
+    }
+</script>
+<h1>{{ data.title }}</h1>
+<div class="box">
+    {{ data.description | safe }}
+</div>
+<h2>Submit solution</h2>
+<div class="box">
+    <form method="post" enctype=multipart/form-data>
+        <div class="grid-mini">
+            <input type="file" name="file" accept = ".py,.java,.cpp" id="file">
+            <script>
+                document.getElementById("file").onchange = function(){
+                    extension = String((document.getElementById("file")).value).split('.').pop();
+                    var i = 0;
+                    if (extension == "cpp"){
+                        i = 0
+                    }
+                    if (extension == "java"){
+                        i = 1
+                    }
+                    if (extension == "py"){
+                        i = 3
+                    }
+                    document.getElementById("language").options[i].selected = true;
+                }
+            </script>
+            <div style="text-align:right;">
+                <select name="language" id="language" style="display:inline-block;width:auto">
+                    <option value="cpp">C++</option>
+                    <option value="java">Java</option>
+                    <option value="python2">Python 2.7.18</option>
+                    <option value="python">Python 3.6.9</option>
+                </select>        
+            </div>
+        </div>
+        <input type="submit">
+    </form>
+</div>
+
+<h2>Results</h2>
+
+<div class="box">
+    {% if results %}
+    <div class="grid-tiny">
+        {% for result in results %}
+            {% if result[0] == "AC" %}
+                <div class="result-box success" title="Accepted">
+                    {{ loop.index }} <b>AC</b>
+                    <p>{{ result[1] }}ms</p>
+                </div>
+            {% elif result[0] == "WA" %}
+                <div class="result-box fail" title="Wrong Answer">
+                    {{ loop.index }} <b>{{ result[0] }}</b>
+                    <p>{{ result[1] }}ms</p>
+                </div>
+            {% elif result[0] == "TLE" %}
+                <div class="result-box fail" title="Time Limit Exceeded">
+                    {{ loop.index }} <b>{{ result[0] }}</b>
+                    <p>{{ result[1] }}ms</p>
+                </div>
+            {% elif result[0] == "RE" %}
+                <div class="result-box fail" title="Runtime Error">
+                    {{ loop.index }} <b>{{ result[0] }}</b>
+                    <p>{{ result[1] }}ms</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% else %}
+    Submit a program to view results
+    {% endif %}            
+</div>
+
+<br><br><br>
+{% endblock %}
