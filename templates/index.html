@@ -51,6 +51,7 @@
                                   const matchStartIndex = arrVal.indexOf(searchVal);
                                   /*create a DIV element for each matching element:*/
                                   b = document.createElement("DIV");
+                                  b.className = "autocomplete-item";
                                   /*make the matching letters bold:*/
                                   const text = arr[i].substring(0, matchStartIndex) + "<strong>" + arr[i].substring(matchStartIndex, matchStartIndex+searchVal.length) + "</strong>" + arr[i].substring(matchStartIndex+searchVal.length);
                                   b.innerHTML += text;
@@ -131,7 +132,7 @@
         </form>
     </div>
     <div class="box">
-        <h2>Become a Tutee</h2>
+        <h2>Become a Tutor</h2>
         <button onclick="location.href='select'">Apply</button>
     </div>
 </div>
@@ -150,21 +151,21 @@
     <div class="box">
         <form method="post">
             <h2>Nick</h2>
-            <a><img src="static/nick.jpeg" style="width: 80%"></a>
+            <a><img src="static/nick.jpeg" class="bio-image"></a>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </form>
+    </div>
+    <div class="box">
+        <form method="post">
+            <h2>Jieruei</h2>
+            <a><img src="static/other.jpeg" class="bio-image"></a>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
         </form>
     </div>
     <div class="box">
         <form method="post">
             <h2>Other person</h2>
-            <a><img src="static/other.jpeg" style="width: 80%"></a>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-        </form>
-    </div>
-    <div class="box">
-        <form method="post">
-            <h2>Other person</h2>
-            <a><img src="static/other.jpeg" style="width: 80%"></a>
+            <a><img src="static/other.jpeg" class="bio-image"></a>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
         </form>
     </div>

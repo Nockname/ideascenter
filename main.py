@@ -40,9 +40,11 @@ def decrypt(enc):
 def index():
     
     with open("courses.txt", encoding='utf-8') as currentFile:
-        data = currentFile.readlines()
-        for i, line in enumerate(data):
-            data[i] = ' '.join(line.split()[:-1])
+        data = currentFile.read().split("\n")
+        #for i, line in enumerate(data):
+        #    data[i] = ' '.join(line.split()[:-1])
+            
+        print(data)
     
     if request.method == "POST":
         print("post")
