@@ -159,3 +159,19 @@ td, th {
     opacity:0;
     /*transition: 0.5s all;*/
 }
+
+.bio-image {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.autocomplete-item {
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+.autocomplete-item:hover {
+    background-color: #ededed;
+}

@@ -1,143 +1,143 @@
-English I 20
-English II 20
-English III 20
-AP English III 45
-English IV 30
-AP English IV 30
-Contemporary Literature 15
-Great Books 15
-Film Appreciation 10
-Filmmaking 10
-Video Production I 10
-Video Production II 10
-Philosophy 20
-Other Semester Electives 0
-US History I 20
-US History II 20
-AP US History 45
-World History & Cultures 15
-AP World History & Cultures 25
-AP Gov Pol 40
-AP European History 40
-Human Behavior 15
-Accelerated Sociology 20
-ESL History 10
-Africa, Russia 10
-Latin America, Middle East 10
-Current Events, World Religions 20
-Racial Literacy & Social Justice 10
-Computer Applications 0
-Accounting 0
-Web Page Design 0
-AP Macro/AP Microeconomics 10
-Contemporary Economic Issues 10
-Business Ethics 15
-Personal Finance 0
-Economics 0
-Entrepreneurship 0
-Engineering Drawing 0
-Architecture 0
-Advanced Architecture 0
-Computer Graphics 0
-CISCO 0
-Algebra I 15
-Geometry 20
-Geometry Accelerated 25
-Algebra II 20
-Algebra II Elements 15
-Algebra II Accelerated 30
-Applications of Modeling Math 0
-Pre Calculus 20
-Pre Calculus Accelerated 30
-Calculus 20
-AP Calculus AB 45
-AP Calculus BC 30
-Multivariable Calculus and Linear Algebra 35
-Intro to Stats/Discrete Math 0
-AP Statistics 25
-Japanese I 15
-Japanese II 15
-Japanese III 15
-Japanese IV 15
-AP Japanese 15
-Latin I 15
-Latin II 15
-Latin III 15
-Latin IV 15
-AP Latin 15
-Italian I 15
-Italian II 15
-Italian III 30
-Italian IV & AP 45
-Spanish I 0
-Spanish II 0
-Spanish III 15
-Spanish IV 15
-Spanish V 15
-Spanish VI 15
-Spanish IVA 15
-Spanish VA 15
-Spanish VIA 15
-AP Spanish 20
-Mandarin I 15
-Mandarin II 10
-Mandarin III 15
-Mandarin IV 20
-AP Mandarin 30
-French II & III 10
-French IV 15
-French V 15
-French VI 15
-French IIIA 15
-French IVA 15
-French VA & VIA 20
-AP French 25
-Studio Art I 0
-Studio Art II (2D/3D) 0
-Studio Art III (2D/3D) 0
-Art of Craft 0
-Studio Art IV 0
-AP Art History 40
-Tiger Bands I & II 0
-Nassau Bands I & II 0
-Jazz Ensemble 0
-Studio Band 0
-Repertoire Orchestra 0
-Sinfonia 0
-PHS Orchestra 0
-AP Music Theory 20
-Chorale I & II 0
-Cantus 0
-PHS Choir 0
-Drama I 0
-Drama II 0
-Drama Seminar 0
-Musical Theatre 0
-Dance 0
-Biology 20
-Biology Accelerated 30
-Chemistry 15
-Chemistry Accelerated 45
-Environmental Science 10
-AP Biology 60
-AP Chemistry 60
-Physics 20
-AP Physics I 15
-AP Physics C 15
-Organic Chemistry 20
-Forensics 15
-Engineering Physics 15
-Planetary Science Accelerated 25
-Anatomy & Physiology 20
-Genetics 20
-AP Environmental Science 30
-Exercise Science & Engineering 15
-Research Program 30
-Physical Education 0
-Health 15
-Driver's Education 15
-Python Programming 0
-Intro to Java/Object Java 0
-AP Computer Science 0
-Algorithms & Data Structures 0
-Computer Science Principles 0
+English I
+English II
+English III
+AP English III
+English IV
+AP English IV
+Contemporary Literature
+Great Books
+Film Appreciation
+Filmmaking
+Video Production I
+Video Production II
+Philosophy
+Other Semester Electives
+US History I
+US History II
+AP US History
+World History & Cultures
+AP World History & Cultures
+AP Gov Pol
+AP European History
+Human Behavior
+Accelerated Sociology
+ESL History
+Africa, Russia
+Latin America, Middle East
+Current Events, World Religions
+Racial Literacy & Social Justice
+Computer Applications
+Accounting
+Web Page Design
+AP Macro/AP Microeconomics
+Contemporary Economic Issues
+Business Ethics
+Personal Finance
+Economics
+Entrepreneurship
+Engineering Drawing
+Architecture
+Advanced Architecture
+Computer Graphics
+CISCO
+Algebra I
+Geometry
+Geometry Accelerated
+Algebra II
+Algebra II Elements
+Algebra II Accelerated
+Applications of Modeling Math
+Pre Calculus
+Pre Calculus Accelerated
+Calculus
+AP Calculus AB
+AP Calculus BC
+Multivariable Calculus and Linear Algebra
+Intro to Stats/Discrete Math
+AP Statistics
+Japanese I
+Japanese II
+Japanese III
+Japanese IV
+AP Japanese
+Latin I
+Latin II
+Latin III
+Latin IV
+AP Latin
+Italian I
+Italian II
+Italian III
+Italian IV & AP
+Spanish I
+Spanish II
+Spanish III
+Spanish IV
+Spanish V
+Spanish VI
+Spanish IVA
+Spanish VA
+Spanish VIA
+AP Spanish
+Mandarin I
+Mandarin II
+Mandarin III
+Mandarin IV
+AP Mandarin
+French II & III
+French IV
+French V
+French VI
+French IIIA
+French IVA
+French VA & VIA
+AP French
+Studio Art I
+Studio Art II (2D/3D)
+Studio Art III (2D/3D)
+Art of Craft
+Studio Art IV
+AP Art History
+Tiger Bands I & II
+Nassau Bands I & II
+Jazz Ensemble
+Studio Band
+Repertoire Orchestra
+Sinfonia
+PHS Orchestra
+AP Music Theory
+Chorale I & II
+Cantus
+PHS Choir
+Drama I
+Drama II
+Drama Seminar
+Musical Theatre
+Dance
+Biology
+Biology Accelerated
+Chemistry
+Chemistry Accelerated
+Environmental Science
+AP Biology
+AP Chemistry
+Physics
+AP Physics I
+AP Physics C
+Organic Chemistry
+Forensics
+Engineering Physics
+Planetary Science Accelerated
+Anatomy & Physiology
+Genetics
+AP Environmental Science
+Exercise Science & Engineering
+Research Program
+Physical Education
+Health
+Driver's Education
+Python Programming
+Intro to Java/Object Java
+AP Computer Science
+Algorithms & Data Structures
+Computer Science Principles

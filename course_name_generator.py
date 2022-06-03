@@ -1,0 +1,1 @@
+open("courses.txt","w").write("\n".join([" ".join(i.split()[:-1]) for i in open("courses_raw.txt","r").read().split("\n")]))
