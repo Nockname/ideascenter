@@ -85,6 +85,7 @@ button.button-emphasis:hover, input.button-emphasis:hover {
     padding: 10px;
     text-align: center;
     font-size: 16pt;
+    cursor: pointer;
 }
 .result-box p {
     margin: 0px;
@@ -131,8 +132,9 @@ td, th {
     border-color: rgb(255, 83, 83);
 }
 .success {
-    background-color: rgba(81, 204, 85, 0.5);
-    border-color: rgba(81, 204, 85);
+    background-color: #324376;
+    border-color: #0d1327;
+    color: white;
 }
 .partial {
     background-color: #e6ab2192;
