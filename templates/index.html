@@ -38,7 +38,13 @@
                             /*append the DIV element as a child of the autocomplete container:*/
                             this.parentNode.appendChild(a);
                             /*for each item in the array...*/
+                            let count = 0;
                             for (i = 0; i < arr.length; i++) {
+
+                                if (count > 9){
+                                    continue;
+                                }
+
                                 const arrVal = arr[i].toLowerCase();
                                 const searchVal = val.toLowerCase();
                                 if (arrVal.includes(searchVal)) {
@@ -50,6 +56,7 @@
                                   b.innerHTML += text;
                                   /*insert a input field that will hold the current array item's value:*/
                                   b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                                  count++;
                                   /*execute a function when someone clicks on the item value (DIV element):*/
                                       b.addEventListener("click", function(e) {
                                       /*insert the value for the autocomplete text field:*/
@@ -120,7 +127,7 @@
                     } 
                     </script>
                 </form>
-                <input type="submit" value="Find" class="button-emphasis">
+                <button onclick="location.href='availability'" class="button-emphasis">Find</button>
         </form>
     </div>
     <div class="box">
@@ -130,9 +137,9 @@
 </div>
 <br>
 <div>
-    <button>About the Ideas Center</button>
-    <button>Contact Dr. Dinan</button>
-    <button>SAT and AP Review Resources</button>
+    <button onclick="location.href='about'">About the Ideas Center</button>
+    <button onclick="location.href='contact'">Contact Dr. Dinan</button>
+    <button onclick="location.href='public'">SAT and AP Review Resources</button>
 </div>
 
 <hr>

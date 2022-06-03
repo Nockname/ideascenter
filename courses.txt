@@ -29,7 +29,8 @@ Racial Literacy & Social Justice 10
 Computer Applications 0
 Accounting 0
 Web Page Design 0
-AP Macro/AP Microeconomics 10
+AP Macroeconomics 10
+AP Microeconomics 10
 Contemporary Economic Issues 10
 Business Ethics 15
 Personal Finance 0
@@ -53,7 +54,8 @@ Calculus 20
 AP Calculus AB 45
 AP Calculus BC 30
 Multivariable Calculus and Linear Algebra 35
-Intro to Stats/Discrete Math 0
+Discrete Math 0
+Intro to Stats 0
 AP Statistics 25
 Japanese I 15
 Japanese II 15

@@ -1,9 +1,8 @@
-
 import json
 import os
-import random
-import time
-import markdown
+import base64 
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad,unpad
 import uuid 
 import hashlib
 import glob
@@ -25,6 +24,18 @@ def admin_check(req):
                 return data
     return False
 
+key = 'AAZRAAAABCAAOKAA' #Must Be 16 char for AES128
+
+def encrypt(raw):
+        raw = pad(raw.encode(),16)
+        cipher = AES.new(key.encode('utf-8'), AES.MODE_ECB)
+        return base64.b64encode(cipher.encrypt(raw))
+
+def decrypt(enc):
+        enc = base64.b64decode(enc)
+        cipher = AES.new(key.encode('utf-8'), AES.MODE_ECB)
+        return unpad(cipher.decrypt(enc),16)
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     
@@ -32,27 +43,41 @@ def index():
         data = currentFile.readlines()
         for i, line in enumerate(data):
             data[i] = ' '.join(line.split()[:-1])
-            
-        print(data)
     
     if request.method == "POST":
+        print("post")
         try:
-            name = request.form["player_name"]
-            id = request.form["game_id"]
+            tuteeClass = request.form["inputProblems"]
+            if tuteeClass != "" and tuteeClass not in data:
+                id = tuteeClass
+                print(id)
+                print(encrypt(id))
+                return redirect(f"/waiting?id={id}")
+            
         except:
             return render_template(
                 "index.html",
                 courses = data
             )
-        id = id.rstrip().upper()
-        for game in games:
-            if game.id == id and not game.is_duplicate_name(name):
-                player = game.add_player(name)
-                return redirect(f"/waiting?id={id}&player={player}")
+                
     return render_template(
         "index.html",
         courses = data
     )
+    
+@app.route("/contact", methods=["GET"])
+def contact():
+    return render_template("contact.html")
+
+@app.route("/about", methods=["GET"])
+def about():
+    return render_template("about.html")
+
+@app.route("/availability", methods=["GET"])
+def availability():
+    return render_template("availability.html")
+    
+# LOGIN / SECURITY
 
 def hash_password(password):
     salt = uuid.uuid4().hex 
