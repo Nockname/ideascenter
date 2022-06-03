@@ -1,8 +1,8 @@
 import json
 import os
 import base64 
-from Crypto.Cipher import AES
-from Crypto.Util.Padding import pad,unpad
+#from Crypto.Cipher import AES
+#from Crypto.Util.Padding import pad,unpad
 import uuid 
 import hashlib
 import glob
@@ -27,14 +27,18 @@ def admin_check(req):
 key = 'AAZRAAAABCAAOKAA' #Must Be 16 char for AES128
 
 def encrypt(raw):
-        raw = pad(raw.encode(),16)
-        cipher = AES.new(key.encode('utf-8'), AES.MODE_ECB)
-        return base64.b64encode(cipher.encrypt(raw))
+        # i give up on making this look pretty -jc
+
+        #raw = pad(raw.encode(),16)
+        #cipher = AES.new(key.encode('utf-8'), AES.MODE_ECB)
+        #return base64.b64encode(cipher.encrypt(raw))
+        return base64.b64encode(raw)
 
 def decrypt(enc):
-        enc = base64.b64decode(enc)
-        cipher = AES.new(key.encode('utf-8'), AES.MODE_ECB)
-        return unpad(cipher.decrypt(enc),16)
+        #enc = base64.b64decode(enc)
+        #cipher = AES.new(key.encode('utf-8'), AES.MODE_ECB)
+        #return unpad(cipher.decrypt(enc),16)
+        return base64.b64decode(enc)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
