@@ -253,7 +253,7 @@ def sign_up():
         password = request.form["password"].strip()
 
         user = User(email, username, password)
-        if "@" in email and len(username) > 4 and len(password) > 4 and not user.is_repeat(users):
+        if "@" in email and len(username) > 2 and len(password) > 4 and not user.is_repeat(users):
             print("works")
             user.store_account()
             userID = user.credentials[3]
