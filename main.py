@@ -1,18 +1,25 @@
+import email
 import json
 import os
 import base64 
-#from Crypto.Cipher import AES
-#from Crypto.Util.Padding import pad,unpad
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 import uuid 
 import hashlib
 import glob
 from flask import Flask, request, render_template, redirect
 app = Flask(__name__)
 
-max_testcases = 10
-games = []
 users = []
-adminPass = []
+with open("courses.txt", encoding='utf-8') as currentFile:
+        data = currentFile.read().split("\n")
+        
+MY_ADDRESS = "princetonideascenter@gmail.com"         # Replace with yours
+MY_PASSWORD = "jppsjxxzlhksqvls"      # Replace with yours
+
+HOST_ADDRESS = 'smtp.gmail.com'   # Replace with yours
+HOST_PORT = 587                          # Replace with yours
 
 # PROBLEM CREATION/EDITING/SOLUTION GRADING
 
@@ -24,51 +31,38 @@ def admin_check(req):
                 return data
     return False
 
-key = 'AAZRAAAABCAAOKAA' #Must Be 16 char for AES128
-
 def encrypt(raw):
-        # i give up on making this look pretty -jc
-
-        #raw = pad(raw.encode(),16)
-        #cipher = AES.new(key.encode('utf-8'), AES.MODE_ECB)
-        #return base64.b64encode(cipher.encrypt(raw))
-        return base64.b64encode(raw)
+    data_bytes = raw.encode("utf-8")
+    return base64.b64encode(data_bytes)
 
 def decrypt(enc):
-        #enc = base64.b64decode(enc)
-        #cipher = AES.new(key.encode('utf-8'), AES.MODE_ECB)
-        #return unpad(cipher.decrypt(enc),16)
-        return base64.b64decode(enc)
+    data_bytes = enc.decode("utf-8")
+    return base64.b64decode(data_bytes)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
     
-    with open("courses.txt", encoding='utf-8') as currentFile:
-        data = currentFile.read().split("\n")
-        #for i, line in enumerate(data):
-        #    data[i] = ' '.join(line.split()[:-1])
-            
-        print(data)
-    
     if request.method == "POST":
-        print("post")
-        try:
-            tuteeClass = request.form["inputProblems"]
-            if tuteeClass != "" and tuteeClass not in data:
-                id = tuteeClass
-                print(id)
-                print(encrypt(id))
-                return redirect(f"/waiting?id={id}")
+        tuteeClass = request.form["thisClass"]
+        print(encrypt(tuteeClass))
+        print(decrypt(encrypt(tuteeClass)))
+
+        if tuteeClass != "" and tuteeClass in data:
+            id = encrypt(tuteeClass)
+            return redirect(f"/sign_up?={id}")
+        
+    user_id = request.cookies.get('userid')
+    if user_id != "NotIn" and user_id != "" and user_id != None:
+        with open(glob.glob(os.path.join("users/", '{}.json'.format(user_id)))[0], encoding='utf-8') as currentFile:
+            tutee_data = json.load(currentFile)
             
-        except:
-            return render_template(
-                "index.html",
-                courses = data
-            )
-                
+    else:
+        tutee_data = ["", ""]
+            
     return render_template(
         "index.html",
-        courses = data
+        courses = data,
+        the_username = tutee_data[1]
     )
     
 @app.route("/contact", methods=["GET"])
@@ -79,9 +73,115 @@ def contact():
 def about():
     return render_template("about.html")
 
-@app.route("/availability", methods=["GET"])
+def email_tutors(tuteeClass, email, username):
+    
+    count = 0
+    
+    for filename in glob.glob(os.path.join("tutors/", '*.json')): #only process .JSON files in folder.      
+        with open(filename, encoding='utf-8') as currentFile:
+            data = json.load(currentFile)
+            if tuteeClass in data or "any" in data:
+                
+                count+=1
+    
+                RECIPIENT_ADDRESS = data[0]  # Replace with yours
+                # Connection with the server
+                server = smtplib.SMTP(host=HOST_ADDRESS, port=HOST_PORT)
+                server.starttls()
+                server.login(MY_ADDRESS, MY_PASSWORD)
+
+                # Creation of the MIMEMultipart Object
+                message = MIMEMultipart()
+
+                # Setup of MIMEMultipart Object Header
+                message['From'] = MY_ADDRESS
+                message['To'] = RECIPIENT_ADDRESS
+                message['Subject'] = "Tutoring Match"
+
+                # Creation of a MIMEText Part
+                textPart = MIMEText("Dear {},\n\nYou have a been paired with {}, a tutee seeking tutoring in {}. Please email them at {} to begin tutoring (make sure to CC AndreaDinan@princetonk12.org)!\n\nSincerely,\nPrinceton High School's Ideas Center".format(data[1], username, tuteeClass, email), 'plain')
+
+                # Part attachment
+                message.attach(textPart)
+
+                # Send Email and close connection
+                server.send_message(message)
+                server.quit()
+                
+    if count == 0:
+        RECIPIENT_ADDRESS = email  # Replace with yours
+        # Connection with the server
+        server = smtplib.SMTP(host=HOST_ADDRESS, port=HOST_PORT)
+        server.starttls()
+        server.login(MY_ADDRESS, MY_PASSWORD)
+
+        # Creation of the MIMEMultipart Object
+        message = MIMEMultipart()
+
+        # Setup of MIMEMultipart Object Header
+        message['From'] = MY_ADDRESS
+        message['To'] = RECIPIENT_ADDRESS
+        message['Subject'] = "Tutoring Update"
+
+        # Creation of a MIMEText Part
+        textPart = MIMEText("Dear {},\n\nUnfortunately, no tutors are currently avaliable to tutor in {}. Please try again later or request a different course.\n\nSincerely,\nPrinceton High School's Ideas Center".format(username, tuteeClass), 'plain')
+
+        # Part attachment
+        message.attach(textPart)
+
+        # Send Email and close connection
+        server.send_message(message)
+        server.quit()
+        
+    else:
+        RECIPIENT_ADDRESS = email  # Replace with yours
+        # Connection with the server
+        server = smtplib.SMTP(host=HOST_ADDRESS, port=HOST_PORT)
+        server.starttls()
+        server.login(MY_ADDRESS, MY_PASSWORD)
+
+        # Creation of the MIMEMultipart Object
+        message = MIMEMultipart()
+
+        # Setup of MIMEMultipart Object Header
+        message['From'] = MY_ADDRESS
+        message['To'] = RECIPIENT_ADDRESS
+        message['Subject'] = "Tutoring Request Conformation"
+
+        # Creation of a MIMEText Part
+        textPart = MIMEText("Dear {},\n\nThere are {} tutors who are available to tutor {}. They have been notified of your tutoring request, and if they are avaliable, they will email you soon.\n\nSincerely,\nPrinceton High School's Ideas Center".format(username, count, tuteeClass), 'plain')
+
+        # Part attachment
+        message.attach(textPart)
+
+        # Send Email and close connection
+        server.send_message(message)
+        
+    server.quit()
+
+@app.route("/availability", methods=["GET", "POST"])
 def availability():
-    return render_template("availability.html")
+    
+    if request.method == "POST":
+        user_class = base64.b64decode(request.url.split("?=")[-1][2:-1]).decode("utf-8")
+        user_id = request.cookies.get('userid')
+        print(user_class, user_id)
+        
+        with open(glob.glob(os.path.join("users/", '{}.json'.format(user_id)))[0], encoding='utf-8') as currentFile:
+            tutee_data = json.load(currentFile)
+            email_tutors(user_class, tutee_data[0], tutee_data[1])
+        
+        return redirect(f"/thank_you")
+    
+    return render_template("availability.html", courses = data)
+
+@app.route("/resources", methods=["GET"])
+def resources():
+    return render_template("resources.html")
+
+@app.route("/thank_you", methods=["GET"])
+def thank_you():
+    return render_template("thank_you.html")
     
 # LOGIN / SECURITY
 
@@ -154,9 +254,11 @@ def sign_up():
 
         user = User(email, username, password)
         if "@" in email and len(username) > 4 and len(password) > 4 and not user.is_repeat(users):
+            print("works")
             user.store_account()
             userID = user.credentials[3]
-            return redirect(f"/") #change to put userID in the URL
+            isAdmin = user.credentials[4]
+            return render_template("sign_up.html", admin = isAdmin, userid = userID) #change to put userID in the URL
     return render_template("sign_up.html")
 
 if __name__ == "__main__":

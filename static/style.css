@@ -34,6 +34,15 @@ a {
 }
 
 /* CONTAINER */
+.text-left-right {
+    text-align: right;
+    position: relative;
+}
+.left-text {
+    left: 0;
+    position: absolute;
+}
+
 .grid-big {
     display: grid;
     gap: 20px;
@@ -74,8 +83,39 @@ button.button-emphasis:hover, input.button-emphasis:hover {
     background:#1d2a54 !important;
 }
 
+button.sticky-topl, input.sticky-topl {
+    color: rgb(255, 255, 255);
+    background:#324376 !important; 
+    border:0 none;
+    cursor:pointer;
+}
+button.sticky-topl:hover, input.sticky-topl:hover {
+    background:#1d2a54 !important;
+}
+
 .ButtonContainer{
     text-align: justify
+}
+
+.sticky-topl {
+    position: fixed; 
+    top: 30px;
+    right:170px;
+    margin: 0;
+}
+
+.sticky-top {
+    position: fixed; 
+    top: 30px;
+    right:40px;
+    margin: 0;
+}
+
+.sticky-bottom {
+    position: fixed; 
+    bottom: 30px;
+    right:40px;
+    margin: 0;
 }
 
 .result-box {

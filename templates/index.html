@@ -1,9 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-<form action="log_in" id="log_in" style="position:absolute;top:30px;right:40px"> <!---Change right px to 170 when adding back sign up-->
-    <input type="submit" value="Admin Log In" />
+<form action="log_in" id="log_in" class="sticky-top"> <!---Change right px to 170 when adding back sign up-->
+    <input type="submit" value="Log In" />
 </form>
-<button id="sign_out" onclick="signOut()" style="position:absolute;top:30px;right:40px">Sign Out</button> <!---Change right px to 170 when adding back sign up-->
+<form action="sign_up" id="sign_up" class="sticky-topl"> <!---Change right px to 170 when adding back sign up-->
+    <input type="submit" value="Sign Up" />
+</form>
+<button id="sign_out" onclick="signOut()" class="sticky-top">Sign Out</button> <!---Change right px to 170 when adding back sign up-->
+<h2 id="hello_name" class="sticky-bottom"></h2> <!---Change right px to 170 when adding back sign up-->
 <!--
 <form action="sign_up" style="position:absolute;top:30px;right:40px">
     <input type="submit" class="button-emphasis" value="Sign Up" />
@@ -13,7 +17,7 @@
         <form method="post">
             <h2>Reach a Tutor</h2>
             <div class="autocomplete">
-                <input id="inputProblems" type="text" name="thisClass" placeholder="Class Name">
+                <input name="thisClass" id="inputProblems" type="text" name="thisClass" placeholder="Class Name">
                 </div>
                 <script>
                     
@@ -127,8 +131,7 @@
                       });
                     } 
                     </script>
-                </form>
-                <button onclick="location.href='availability'" class="button-emphasis">Find</button>
+                <input type="submit" value="Find" class="button-emphasis">
         </form>
     </div>
     <div class="box">
@@ -140,7 +143,7 @@
 <div>
     <button onclick="location.href='about'">About the Ideas Center</button>
     <button onclick="location.href='contact'">Contact Dr. Dinan</button>
-    <button onclick="location.href='public'">SAT and AP Review Resources</button>
+    <button onclick="location.href='resources'">SAT and AP Review Resources</button>
 </div>
 
 <hr>
@@ -149,34 +152,24 @@
 
 <div class="grid">
     <div class="box">
-        <form method="post">
             <h2>Nick</h2>
-            <a><img src="static/nick.jpeg" class="bio-image"></a>
+            <img src="static/nick.jpeg" class="bio-image">
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-        </form>
     </div>
     <div class="box">
-        <form method="post">
             <h2>Jieruei</h2>
-            <a><img src="static/other.jpeg" class="bio-image"></a>
+            <img src="static/other.jpeg" class="bio-image">
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-        </form>
     </div>
     <div class="box">
-        <form method="post">
             <h2>Other person</h2>
-            <a><img src="static/other.jpeg" class="bio-image"></a>
+            <img src="static/other.jpeg" class="bio-image">
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-        </form>
     </div>
 </div>
 <br>
-<!--<form method="post" action="list">
-    <input type="text" name="userid" id="userid" hidden style="display:none"> <!-- very cursed userid transfer --
-    <input type="submit" id="catalogue" value="Problem Catalogue">
-</form>-->
-<button id="public_catalogue" onclick="location.href='public'">Idea Center Resources</button>
-<button id="catalogue" onclick="location.href='list'">Upcoming Events</button>
+<button id="public_catalogue" onclick="location.href='public'">About Us</button>
+<button id="catalogue" onclick="location.href='list'">Website Credits</button>
 <script>
     function setCookie(cname,cvalue,exdays) {
         const d = new Date();
@@ -210,7 +203,7 @@
     function updateLogInOut(){
 
         thisAdmin = checkCookie();
-        //document.getElementById("userid").value = getCookie("userid");
+        /*document.getElementById("userid").value = getCookie("userid");
 
         if ( thisAdmin == "True" ){ // If user is an admin
             document.getElementById("catalogue").style.display = "initial";
@@ -219,14 +212,21 @@
         else { // If user is not admin
             document.getElementById("catalogue").style.display = "none";
         }
+        */
         
         if ( thisAdmin == "NotIn" || thisAdmin == "" ){ // If user hasn't logged in
             document.getElementById("sign_out").style.display = "none";
+            document.getElementById("hello_name").style.display = "none";
             document.getElementById("log_in").style.display = "initial";
+            document.getElementById("sign_up").style.display = "initial";
         }
         else{ // If user has logged in
             document.getElementById("log_in").style.display = "none";
+            document.getElementById("sign_up").style.display = "none";
             document.getElementById("sign_out").style.display = "initial";
+            document.getElementById("hello_name").style.display = "initial";
+            document.getElementById("hello_name").innerHTML = "{{the_username}}";
+            
         }    
     }
 
