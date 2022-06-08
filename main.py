@@ -49,7 +49,7 @@ def index():
 
         if tuteeClass != "" and tuteeClass in data:
             id = encrypt(tuteeClass)
-            return redirect(f"/sign_up?={id}")
+            return redirect(f"/sign_up?course={id}")
         
     user_id = request.cookies.get('userid')
     if user_id != "NotIn" and user_id != "" and user_id != None:
@@ -81,7 +81,6 @@ def email_tutors(tuteeClass, email, username):
         with open(filename, encoding='utf-8') as currentFile:
             data = json.load(currentFile)
             if tuteeClass in data or "any" in data:
-                
                 count+=1
     
                 RECIPIENT_ADDRESS = data[0]  # Replace with yours
@@ -163,7 +162,7 @@ def email_tutors(tuteeClass, email, username):
 def availability():
     
     if request.method == "POST":
-        user_class = base64.b64decode(request.url.split("?=")[-1][2:-1]).decode("utf-8")
+        user_class = base64.b64decode(request.args.get("course")[2:-1]).decode("utf-8")
         user_id = request.cookies.get('userid')
         print(user_class, user_id)
         
