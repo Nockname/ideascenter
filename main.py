@@ -19,7 +19,7 @@ with open("courses.txt", encoding='utf-8') as currentFile:
         data = currentFile.read().split("\n")
         
 MY_ADDRESS = "princetonideascenter@gmail.com"         # Replace with yours
-MY_PASSWORD = "jppsjxxzlhksqvls"      # Replace with yours
+MY_PASSWORD = "fxygraqkwxvrkuyo"      # Replace with yours
 
 HOST_ADDRESS = 'smtp.gmail.com'   # Replace with yours
 HOST_PORT = 587                          # Replace with yours
