@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<hr>
+<h2>Tutee Conformation</h2>
+<p id="hello">Hello, </p>
+<p id="courseinfo"></p>
+
+<form method="post">
+    <input type="submit" value="Confirm Avaliability" class="button-emphasis">
+</form>
+
+<script>
+
+    tutor_data = {{tutor_info | safe}};
+    tutee_data = {{tutee_info | safe}};
+    tutee_class = "{{tutee_class | safe}}";
+    document.getElementById("hello").innerHTML = `Hello, ${tutor_data[1]}.`;
+    document.getElementById("courseinfo").innerHTML = `Please click below to confirm your avaliability to tutor ${tutee_data[1]} in ${tutee_class}.`;
+
+</script>
+{% endblock %}
